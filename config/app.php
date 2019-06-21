@@ -178,7 +178,8 @@ return [
         /*
          * For This Project
          */
-        \App\Providers\LocalServiceProvider::class,
+        App\Providers\ViewServiceProvider::class,
+        App\Providers\LocalServiceProvider::class,
     ],
 
     /*

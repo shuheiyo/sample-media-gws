@@ -11,7 +11,9 @@
                                 <label class="col-sm-5 col-form-label" for="distance">現在地からの距離</label>
                                 <div class="col-sm-7">
                                     <select class="form-control" name="distance">
-                                        <option value="300">300m</option>
+                                        @foreach($distance_list as $key => $distance_item)
+                                            <option value="{{$key}}">{{$distance_item}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
