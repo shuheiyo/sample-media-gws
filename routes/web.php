@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'TopController@index')->name('top');
 
+Route::name('restaurant.')->prefix('restaurant')->group(function (){
+    Route::get('/search', 'SearchController@result')->name('search');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -21,7 +21,7 @@ class RestaurantSearchRequest extends FormRequest
         self::RANGE_3000 => '3000m',
     ];
 
-    const Fields = ['distance'];
+    const Fields = ['range', 'latitude', 'longitude'];
 
     /**
      * Determine if the user is authorized to make this request.

@@ -23,9 +23,9 @@ class RestaurantComposer
             session()->flash("search.".$key, $form[$key]);
         }
 
-        $distance_list = RestaurantSearchRequest::RANGE;
+        $range_list = RestaurantSearchRequest::RANGE;
 
-        $data = compact('distance_list', 'form');
+        $data = compact('range_list', 'form');
 
         $view->with($data);
     }
