@@ -7,6 +7,7 @@
                 <div class="row px-5">
                     <div class="col-md-5 bg-light">
                         <form class="pt-3" action="{{ route('restaurant.search') }}">
+                            @csrf
                             <div class="form-group row">
                                 <label class="col-sm-5 col-form-label" for="range">現在地からの距離</label>
                                 <div class="col-sm-7">
