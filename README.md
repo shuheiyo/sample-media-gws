@@ -16,6 +16,7 @@ To use this run confifuration, you need the [Docker Desktop for Mac][docker] ins
 1. Clone the Laradock
     ```
     $ git clone https://github.com/Laradock/laradock.git
+    $ git clone https://github.com/shuheiyo/sample-media-gws.git
     ```
 
 1. Setting the Laradock
@@ -26,6 +27,8 @@ To use this run confifuration, you need the [Docker Desktop for Mac][docker] ins
 
     ```Docker
     ### Paths #####################################
+    
+    APP_CODE_PATH_HOST=../sample-media-gws/
     
     DATA_PATH_HOST=~/.laradock/smgws_data
 
@@ -51,52 +54,47 @@ To use this run confifuration, you need the [Docker Desktop for Mac][docker] ins
     ```
     $ cd ..
     ```
-
+1. Setting Nginx
+    ```
+    $ cd nginx/sites
+    $ vi default.conf
+    ```
+    ```Docker
+    # listen 80 default_server;
+    # listen [::]:80 default_server ipv6only=on;
+    
+    # For https
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server ipv6only=on;
+    ssl_certificate /etc/nginx/ssl/default.crt;
+    ssl_certificate_key /etc/nginx/ssl/default.key;
+    ```
+    ```
+    $ cd ..
+    $ cd ..
+    ```
 1. Build Docker
     ```
     $ docker-compose up -d nginx mysql
     ```
-1. Create the project
+1. Setting project
     ```
     $ docker-compose exec workspace bash
     ```
     ```nginx
-    /var/www# composer create-project --prefer-dist laravel/laravel sample-media-gws "5.8.*"
-    /var/www# cd sample-media-gws
-    /var/www/sample-media-gws# vi .env
+    /var/www# composer install
+    /var/www# php artisan migrate
+    /var/www# php artisan key:generate
+    /var/www# cp .env.example .env
+    /var/www# vi .env
     ```
     ```Docker
-    DB_HOST=mysql
-    DB_PORT=3306
-    DB_DATABASE=default
-    DB_USERNAME=default
+    GWS_ACCESS_KEY_ID=                  # your gurunavi web service api key
     ```
     ```nginx
-    /var/www/sample-media-gws# php artisan migrate
-    /var/www/sample-media-gws# exit
-    ```
-
-1. Change the PATH environment variable
-    ```
-    $ docker-compose down
-    $ vi .env
-    ```
-    ```Docker
-    APP_CODE_PATH_HOST=../sample-media-gws/
-    ```
-
-1. Replace the project
-    ```
-    $ cd ..
-    $ rm -rf sample-media-gws
-    $ git clone https://github.com/shuheiyo/sample-media-gws.git
-    ```
-
-1. Build Docker again
-    ```
-    $ cd laradock
-    $ docker-compose up -d nginx mysql
+    /var/www# exit
     ```
 1. Access the localhost on the browser
-    
-    You can access this app !
+  
+    https://localhost:443  
+    You can use this app!
