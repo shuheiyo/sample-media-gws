@@ -18,6 +18,7 @@ Route::get('/', 'TopController@index')->name('top');
 
 Route::name('restaurant.')->prefix('restaurant')->group(function (){
     Route::get('/search', 'SearchController@result')->name('search');
+    Route::get('/details/{id}', 'SearchController@details')->name('details');
 });
 
 Auth::routes();
