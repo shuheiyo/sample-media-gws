@@ -8,12 +8,12 @@ To use this run confifuration, you need the [Docker Desktop for Mac][docker] ins
 [docker]:https://www.docker.com/products/docker-desktop
 
 ### Preferences
-1. Create project folder:
+1. Create project folder
     ```
     $ mkdir smgws && cd smgws
     ```
 
-1. Clone the Laradock
+1. Clone the Laradock and this repo
     ```
     $ git clone https://github.com/Laradock/laradock.git
     $ git clone https://github.com/shuheiyo/sample-media-gws.git
