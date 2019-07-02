@@ -41,7 +41,14 @@ class SearchResult
 
         $result = json_decode($json, true);
 
-        $pagination = new LengthAwarePaginator($result['total_hit_count'], $result['total_hit_count'], $pagination_interval, $request->page, array('path' => $request->url()));
+        // ヒット数が1000件越えの場合、ぐるなびAPIの仕様上表示できないので対応
+        if ($result['total_hit_count'] > 1000) {
+            $hits = 1000;
+        } else {
+            $hits = $result['total_hit_count'];
+        }
+
+        $pagination = new LengthAwarePaginator($hits, $hits, $pagination_interval, $request->page, array('path' => $request->url()));
         $pagination = $pagination->appends($request->toArray())->links();
         $result['pagination'] = $pagination;
 
