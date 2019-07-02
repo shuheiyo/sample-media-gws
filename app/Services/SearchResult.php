@@ -17,7 +17,7 @@ class SearchResult
     public static function search(RestaurantSearchRequest $request, $pagination_interval)
     {
         if ($request->page && $request->page > 1) {
-            $offset_num = ($request->page - 1) * $pagination_interval;
+            $offset_num = ($request->page - 1) * $pagination_interval + 1;
         } else {
             $offset_num = 1;
         }
