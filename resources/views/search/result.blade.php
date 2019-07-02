@@ -4,10 +4,10 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-9">
-                <div class="row">
+                <div class="row mb-4">
                     @foreach($result['rest'] as $item)
                         <div class="card col-md-3">
-                            <img class="card-img-top mt-2" src="{{ $item['image_url']['shop_image1'] }}" alt="No Image">
+                            <img class="card-img-top mt-2" src="{{ $item['image_url']['shop_image1'] }}" alt="">
                             <div class="card-body">
                                 <a href="{{ route('restaurant.details', $item['id']) }}">
                                     <h5 class="card-title">{{ $item['name'] }}</h5>
@@ -17,6 +17,11 @@
                             </div>
                         </div>
                     @endforeach
+                </div>
+                <div class="row justify-content-center">
+                    <div class="pagination">
+                        {!! $result['pagination'] !!}
+                    </div>
                 </div>
             </div>
         </div>

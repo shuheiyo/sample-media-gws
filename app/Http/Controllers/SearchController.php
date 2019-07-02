@@ -16,7 +16,6 @@ class SearchController extends Controller
 
     public function result(RestaurantSearchRequest $request)
     {
-        // dd($request->range, $request->latitude, $request->longitude);
         $result = SearchResult::search($request,'50');
 
         $restaurants = new Restaurant();
